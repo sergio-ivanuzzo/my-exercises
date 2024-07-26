@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+input[type="text"], input[type="search"] {
+    padding: 10px 30px 10px 10px;
+}
+
+button {
+    padding: 10px;
+}

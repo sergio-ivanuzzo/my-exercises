@@ -1,0 +1,12 @@
+.container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    > .items-list {
+        max-height: 100px;
+        overflow-y: scroll;
+        background: aliceblue;
+    }
+}

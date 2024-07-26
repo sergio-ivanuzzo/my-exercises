@@ -1,0 +1,15 @@
+.input-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    width: fit-content;
+
+    label {
+        position: relative;
+    }
+
+    svg {
+        position: absolute;
+        right: 10px;
+    }
+}
