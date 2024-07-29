@@ -2,7 +2,7 @@ import {render, screen, waitFor, act} from "@testing-library/react";
 import "@testing-library/jest-dom";
 import ReviewMe from "../Proj0";
 import userEvent from "@testing-library/user-event";
-import Contents from "../Proj2";
+import Contents from "../Contents";
 import {BrowserRouter} from "react-router-dom";
 
 const setup = async () => {

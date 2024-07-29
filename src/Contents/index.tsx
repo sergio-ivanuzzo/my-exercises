@@ -4,6 +4,7 @@ import ReviewMe from "../Proj0";
 import ReviewMe2 from "../Proj1";
 import "./index.css";
 import {DebounceInput} from "react-debounce-input";
+import NewsFetcher from "../News";
 
 interface IChapter {
     link: string,
@@ -24,6 +25,7 @@ interface ISearchBarProps {
 const CHAPTERS: IChapter[] = [
     {link: "/first", text: "ReviewMe with own debounce", component: ReviewMe},
     {link: "/second", text: "ReviewMe with DebouncedInput", component: ReviewMe2},
+    {link: "/news", text: "News Fetcher", component: NewsFetcher},
 ];
 
 const SearchBar = ({ query, setQuery }: ISearchBarProps) => {
