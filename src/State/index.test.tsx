@@ -18,6 +18,8 @@ beforeEach(async () => {
 
 const setup = async () => {
     const user = userEvent.setup();
+    // Container should be imported AFTER uuid was mocked !
+    // otherwise it will use origin uuid
     const { default: Container } = await import("./index");
     render(<Container />);
 

@@ -1,0 +1,21 @@
+.container {
+    width: 50%;
+    margin: 20px;
+
+    .itemsList {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+
+        > * {
+            flex-basis: 50px;
+            background: aquamarine;
+
+            &.selected {
+                background: red;
+                color: blue;
+                font-weight: bold;
+            }
+        }
+    }
+}

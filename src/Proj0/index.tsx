@@ -1,6 +1,6 @@
 import React from "react";
 import useDebounce from "./hooks";
-import "./index.css";
+import styles from "./index.module.css";
 
 const SPECIAL_KEYS = [
     "Shift", "Control", "Escape", "Delete", "Home", "End",

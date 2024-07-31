@@ -2,10 +2,11 @@ import React, {ChangeEvent, useMemo, useState} from "react";
 import {Link, Route, Routes} from "react-router-dom";
 import ReviewMe from "../Proj0";
 import ReviewMe2 from "../Proj1";
-import "./index.css";
+import "./index.module.css";
 import {DebounceInput} from "react-debounce-input";
 import NewsFetcher from "../News";
 import State from "../State";
+import Selecting from "../Selecting";
 
 interface IChapter {
     link: string,
@@ -28,6 +29,7 @@ const CHAPTERS: IChapter[] = [
     {link: "/second", text: "ReviewMe with DebouncedInput", component: ReviewMe2},
     {link: "/news", text: "News Fetcher", component: NewsFetcher},
     {link: "/state", text: "State", component: State},
+    {link: "/selecting", text: "Selecting", component: Selecting},
 ];
 
 const SearchBar = ({ query, setQuery }: ISearchBarProps) => {
