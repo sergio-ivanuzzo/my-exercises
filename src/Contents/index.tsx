@@ -7,6 +7,7 @@ import {DebounceInput} from "react-debounce-input";
 import NewsFetcher from "../News";
 import State from "../State";
 import Selecting from "../Selecting";
+import TableContainer from "../Sorting";
 
 interface IChapter {
     link: string,
@@ -30,6 +31,7 @@ const CHAPTERS: IChapter[] = [
     {link: "/news", text: "News Fetcher", component: NewsFetcher},
     {link: "/state", text: "State", component: State},
     {link: "/selecting", text: "Selecting", component: Selecting},
+    {link: "/sorting", text: "Sortable Table", component: TableContainer},
 ];
 
 const SearchBar = ({ query, setQuery }: ISearchBarProps) => {

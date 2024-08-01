@@ -16,6 +16,10 @@ input[type="text"], input[type="search"] {
     padding: 10px 30px 10px 10px;
 }
 
+input[type="number"] {
+    padding: 10px 0 10px 10px;
+}
+
 button {
     padding: 10px;
 }
