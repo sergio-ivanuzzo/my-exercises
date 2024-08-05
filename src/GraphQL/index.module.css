@@ -1,0 +1,31 @@
+.form {
+    max-width: 100%; /* Максимальная ширина формы */
+    margin: 0 auto;
+
+    label {
+        display: block;
+        margin-bottom: 1em;
+    }
+
+    label span {
+        display: block;
+        font-weight: bold;
+    }
+
+    fieldset {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.table {
+    width: 50%;
+
+    thead {
+        background: cyan;
+
+        th {
+            text-align: left;
+        }
+    }
+}

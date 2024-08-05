@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useRef, useState} from "react";
 import { v4 } from "uuid";
 import styles from "./index.module.css";
 

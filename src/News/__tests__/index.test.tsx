@@ -1,7 +1,7 @@
 import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import "@testing-library/jest-dom";
 
-import NewsFetcher, {IArticle} from "./index";
+import NewsFetcher, {IArticle} from "../index";
 
 const MOCK_ARTICLES: Partial<IArticle>[] = Array.from({ length: 20 }, (_, index) => ({
     author: `Author-${index}`,

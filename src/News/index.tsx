@@ -58,7 +58,7 @@ const NewsFetcher = () => {
 
     useEffect(() => {
         fetchData();
-    }, []);
+    }, [fetchData]);
 
     const articlesElements = useMemo(
         () => articles.map(({ key, ...rest }) => (<Article key={key} {...rest} />)),

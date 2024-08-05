@@ -1,7 +1,7 @@
 import {act, fireEvent, render, screen, waitFor} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
-import TableContainer, {IRow, Order, SortableTable, sortItemsByField} from "./index";
+import TableContainer, {IRow, Order, SortableTable, sortItemsByField} from "../index";
 
 const setup = () => {
     const user = userEvent.setup();
