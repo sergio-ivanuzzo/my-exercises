@@ -19,8 +19,6 @@ const CREATED_USER: Omit<IUser, "id"> = {
     role: "USER"
 }
 
-let queryCalled = false;
-
 const mocks = [
     {
         request: {

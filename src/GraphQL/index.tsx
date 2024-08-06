@@ -67,11 +67,18 @@ const Form = ({ addUser }: IFormProps) => {
 
 interface IUserTableProps {
     users: IUser[];
+    editUser: (user: IUser) => void;
+    removeUser: (id: string) => void;
 }
 
-const UserTable = ({ users }: IUserTableProps) => {
+const UserTable = ({ users, editUser, removeUser }: IUserTableProps) => {
+    const handleEdit = (user: IUser) => editUser({
+        ...user,
+        name: "UPDATED"
+    });
+
     const userElements = users.map(user => (
-        <tr key={user.id}>
+        <tr key={user.id} onClick={() => handleEdit(user)} onContextMenu={() => removeUser(user.id)}>
             <td data-testid="td-name">{user.name}</td>
             <td data-testid="td-age">{user.age}</td>
             <td data-testid="td-role">{user.role}</td>
@@ -106,12 +113,28 @@ export const USERS_QUERY = gql`
 `;
 
 export const CREATE_USER_MUTATION = gql`
-    mutation createUser($input: UserInput!) {
-        user(input: $input) {
+    mutation createUser($input: CreateUserInput!) {
+        newUser(input: $input) {
             name,
             age,
             role
         }
+    }
+`;
+
+export const UPDATE_USER_MUTATION = gql`
+    mutation updateUser($id: String!, $input: UpdateUserInput!) {
+        user(id: $id, input: $input) {
+            name,
+            age,
+            role
+        }
+    }
+`;
+
+export const DELETE_USER_MUTATION = gql`
+    mutation deleteUser($id: String!) {
+        deleteUser(id: $id)
     }
 `;
 
@@ -123,11 +146,23 @@ interface IProps {
 
 const Container = () => {
     const queryResponse: IProps = useQuery(USERS_QUERY);
-    const [createUser, mutationResponse] = useMutation(CREATE_USER_MUTATION, {
+    const [createUser, createMutationResponse] = useMutation(CREATE_USER_MUTATION, {
         refetchQueries: [{ query: USERS_QUERY }]
     });
 
-    if (queryResponse.loading || mutationResponse.loading) {
+    const [updateUser, updateMutationResponse] = useMutation(UPDATE_USER_MUTATION, {
+        refetchQueries: [{ query: USERS_QUERY }]
+    });
+
+    const [deleteUser, deleteMutationResponse] = useMutation(DELETE_USER_MUTATION, {
+        refetchQueries: [{ query: USERS_QUERY }]
+    });
+
+    if (queryResponse.loading
+        || createMutationResponse.loading
+        || updateMutationResponse.loading
+        || deleteMutationResponse.loading
+    ) {
         return <div>Loading...</div>
     }
 
@@ -136,9 +171,19 @@ const Container = () => {
         return <div>{`Query Response error: ${queryResponse.error}`}</div>
     }
 
-    if (mutationResponse.error) {
-        console.error(JSON.stringify(mutationResponse.error, null, 2));
-        return <div>{`Mutation Response error: ${mutationResponse.error}`}</div>
+    if (createMutationResponse.error) {
+        console.error(JSON.stringify(createMutationResponse.error, null, 2));
+        return <div>{`Create Mutation Response error: ${createMutationResponse.error}`}</div>
+    }
+
+    if (updateMutationResponse.error) {
+        console.error(JSON.stringify(updateMutationResponse.error, null, 2));
+        return <div>{`Update Mutation Response error: ${updateMutationResponse.error}`}</div>
+    }
+
+    if (deleteMutationResponse.error) {
+        console.error(JSON.stringify(deleteMutationResponse.error, null, 2));
+        return <div>{`Delete Mutation Response error: ${deleteMutationResponse.error}`}</div>
     }
 
     const users = queryResponse.data?.users ?? [];
@@ -147,10 +192,18 @@ const Container = () => {
         await createUser({ variables: { input: { ...user } } })
     };
 
+    const editUser = async ({ id, name, age, role }: IUser) => {
+        await updateUser({ variables: { id, input: { name, age, role } } })
+    };
+
+    const removeUser = async(id: string) => {
+        await deleteUser({ variables: { id } });
+    }
+
     return (
         <>
             <Form addUser={addUser} />
-            <UserTable users={users} />
+            <UserTable users={users} editUser={editUser} removeUser={removeUser} />
         </>
     );
 };
