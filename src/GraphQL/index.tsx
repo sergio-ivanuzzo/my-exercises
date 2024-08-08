@@ -102,13 +102,28 @@ const UserTable = ({ users, editUser, removeUser }: IUserTableProps) => {
 };
 
 export const USERS_QUERY = gql`
-    query getUsers {
+    {
       users {
         id,
         name,
         age,
         role
       }
+    }
+`;
+
+export const EXT_USERS_QUERY = gql`
+    {
+      oddUsers {
+        ...fields
+      },
+      evenUsers {
+        ...fields
+      }
+    }
+    
+    fragment fields on User {
+        id, name, age, role
     }
 `;
 
@@ -138,14 +153,18 @@ export const DELETE_USER_MUTATION = gql`
     }
 `;
 
-interface IProps {
+interface IQueryProps {
     data?: { users: IUser[] },
     loading: boolean,
     error?: ApolloError,
 }
 
 const Container = () => {
-    const queryResponse: IProps = useQuery(USERS_QUERY);
+    const queryResponse: IQueryProps = useQuery(USERS_QUERY);
+    const extQueryResponse: IQueryProps = useQuery(EXT_USERS_QUERY);
+
+    console.log(extQueryResponse.data);
+
     const [createUser, createMutationResponse] = useMutation(CREATE_USER_MUTATION, {
         refetchQueries: [{ query: USERS_QUERY }]
     });
