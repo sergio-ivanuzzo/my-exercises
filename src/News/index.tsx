@@ -3,7 +3,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { v4 } from "uuid";
 import styles from "./index.module.css";
 
-const URL = "https://newsapi.org/v2/everything?q=tesla&from=2024-06-30&sortBy=publishedAt";
+const URL = "https://newsapi.org/v2/top-headlines?country=us&category=business";
 const API_KEY = "35e16e7d832b43d3a388e029b287425d";
 
 export interface IArticle {
@@ -44,16 +44,16 @@ const NewsFetcher = () => {
         const response = await fetch(`${URL}&apiKey=${API_KEY}&page=${page}&pageSize=${pageSize}`);
 
         if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+            console.error(`HTTP error! Status: ${response.status}`);
+        } else {
+            const { articles }: { articles: IArticle[] } = await response.json();
+            setArticles(prevArticles => [...prevArticles, ...articles.map(article => ({
+                ...article,
+                key: v4(),
+            }))]);
+            setHasMore(!!articles.length);
+            setPage(prevPage => prevPage + 1);
         }
-
-        const { articles }: { articles: IArticle[] } = await response.json();
-        setArticles(prevArticles => [...prevArticles, ...articles.map(article => ({
-            ...article,
-            key: v4(),
-        }))]);
-        setHasMore(!!articles.length);
-        setPage(prevPage => prevPage + 1);
     };
 
     useEffect(() => {

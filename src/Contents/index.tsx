@@ -1,10 +1,10 @@
-import React, {ChangeEvent, useMemo, useState} from "react";
+import React, {ChangeEvent, Suspense, useMemo, useState} from "react";
 import {Link, Route, Routes} from "react-router-dom";
 import ReviewMe from "../Proj0";
 import ReviewMe2 from "../Proj1";
 import "./index.module.css";
 import {DebounceInput} from "react-debounce-input";
-import NewsFetcher from "../News";
+// import NewsFetcher from "../News";
 import State from "../State";
 import Selecting from "../Selecting";
 import TableContainer from "../Sorting";
@@ -26,10 +26,13 @@ interface ISearchBarProps {
     setQuery: (query: string) => void,
 }
 
+const LazyFetcher = React.lazy(() => import("../News"));
+const LazyContainer = () => <Suspense fallback={<div>Loading...</div>}><LazyFetcher /></Suspense>;
+
 const CHAPTERS: IChapter[] = [
     {link: "/first", text: "ReviewMe with own debounce", component: ReviewMe},
     {link: "/second", text: "ReviewMe with DebouncedInput", component: ReviewMe2},
-    {link: "/news", text: "News Fetcher", component: NewsFetcher},
+    {link: "/news", text: "News Fetcher", component: LazyContainer},
     {link: "/state", text: "State", component: State},
     {link: "/selecting", text: "Selecting", component: Selecting},
     {link: "/sorting", text: "Sortable Table", component: TableContainer},

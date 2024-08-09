@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {Suspense, useState} from "react";
 import styles from "./index.module.css";
 import {ApolloError, gql, useMutation, useQuery} from "@apollo/client";
 
