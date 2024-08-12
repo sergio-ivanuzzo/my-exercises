@@ -10,6 +10,7 @@ import Selecting from "../Selecting";
 import TableContainer from "../Sorting";
 import UserTableGraphQL from "../GraphQL";
 import {MovieSearch} from "../GraphQL/MovieSearch";
+import Counter from "../Counter";
 
 interface IChapter {
     link: string,
@@ -39,6 +40,7 @@ const CHAPTERS: IChapter[] = [
     {link: "/sorting", text: "Sortable Table", component: TableContainer},
     {link: "/graphql1", text: "UserTable GraphQL", component: UserTableGraphQL},
     {link: "/graphql2", text: "GraphQL Movie Search", component: MovieSearch},
+    {link: "/counter", text: "Counter", component: Counter},
 ];
 
 const SearchBar = ({ query, setQuery }: ISearchBarProps) => {
