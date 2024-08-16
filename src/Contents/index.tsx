@@ -11,6 +11,9 @@ import TableContainer from "../Sorting";
 import UserTableGraphQL from "../GraphQL";
 import {MovieSearch} from "../GraphQL/MovieSearch";
 import Counter from "../Counter";
+import ColorButton from "../ColorButton";
+import Timer from "../Timer";
+import GithubSearch from "../GithubSearch";
 
 interface IChapter {
     link: string,
@@ -41,6 +44,9 @@ const CHAPTERS: IChapter[] = [
     {link: "/graphql1", text: "UserTable GraphQL", component: UserTableGraphQL},
     {link: "/graphql2", text: "GraphQL Movie Search", component: MovieSearch},
     {link: "/counter", text: "Counter", component: Counter},
+    {link: "/colorbutton", text: "ColorButton", component: ColorButton},
+    {link: "/timer", text: "Timer with setInterval", component: Timer},
+    {link: "/githubsearch", text: "GithubSearch", component: GithubSearch},
 ];
 
 const SearchBar = ({ query, setQuery }: ISearchBarProps) => {
