@@ -14,6 +14,8 @@ import Counter from "../Counter";
 import ColorButton from "../ColorButton";
 import Timer from "../Timer";
 import GithubSearch from "../GithubSearch";
+import WeatherDisplay from "../WeatherAPI";
+import CurrencyConverter from "../CurrencyConverter";
 
 interface IChapter {
     link: string,
@@ -47,6 +49,8 @@ const CHAPTERS: IChapter[] = [
     {link: "/colorbutton", text: "ColorButton", component: ColorButton},
     {link: "/timer", text: "Timer with setInterval", component: Timer},
     {link: "/githubsearch", text: "GithubSearch", component: GithubSearch},
+    {link: "/weather", text: "WeatherDisplay", component: WeatherDisplay},
+    {link: "/currency", text: "CurrencyConverter", component: CurrencyConverter},
 ];
 
 const SearchBar = ({ query, setQuery }: ISearchBarProps) => {
