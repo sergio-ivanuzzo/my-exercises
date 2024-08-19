@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    align-items: center;
+
+    .value {
+        display: flex;
+        align-items: center;
+        align-self: stretch;
+        background: blue;
+        color: white;
+    }
+}
