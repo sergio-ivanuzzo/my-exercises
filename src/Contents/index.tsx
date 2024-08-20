@@ -17,6 +17,7 @@ import GithubSearch from "../GithubSearch";
 import WeatherDisplay, {WeatherWithSearch} from "../WeatherAPI";
 import CurrencyConverter from "../CurrencyConverter";
 import {NewsFetcherWithCategorySelector} from "../News";
+import ImageGallery from "../ImageGallery";
 
 interface IChapter {
     link: string,
@@ -60,6 +61,7 @@ const CHAPTERS: IChapter[] = [
             );
         }},
     {link: "/currency", text: "CurrencyConverter", component: CurrencyConverter},
+    {link: "/imagegallery", text: "ImageGallery", component: ImageGallery},
 ];
 
 const SearchBar = ({ query, setQuery }: ISearchBarProps) => {

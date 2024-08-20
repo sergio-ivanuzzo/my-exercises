@@ -1,0 +1,18 @@
+.imageCard {
+    padding: 10px;
+    border: 1px solid gray;
+    box-shadow: 0 3px 0 0 rgba(55, 13, 13, .1);
+    width: 200px;
+    margin: 10px;
+
+    img {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
