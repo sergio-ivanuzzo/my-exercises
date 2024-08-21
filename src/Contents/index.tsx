@@ -18,6 +18,7 @@ import WeatherDisplay, {WeatherWithSearch} from "../WeatherAPI";
 import CurrencyConverter from "../CurrencyConverter";
 import {NewsFetcherWithCategorySelector} from "../News";
 import ImageGallery from "../ImageGallery";
+import RecoilTask1 from "../Recoil";
 
 interface IChapter {
     link: string,
@@ -62,6 +63,7 @@ const CHAPTERS: IChapter[] = [
         }},
     {link: "/currency", text: "CurrencyConverter", component: CurrencyConverter},
     {link: "/imagegallery", text: "ImageGallery", component: ImageGallery},
+    {link: "/recoil1", text: "Recoil Task 1", component: RecoilTask1},
 ];
 
 const SearchBar = ({ query, setQuery }: ISearchBarProps) => {

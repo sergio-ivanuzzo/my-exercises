@@ -6,6 +6,7 @@ import "./index.css";
 import App from "./App";
 import "normalize.css";
 import "reset-css";
+import {RecoilRoot} from "recoil";
 
 const client = new ApolloClient({
     uri: `http://localhost:${process.env.REACT_APP_PORT}/graphql/`,
@@ -20,7 +21,9 @@ root.render(
     <React.StrictMode>
         <ApolloProvider client={client}>
             <BrowserRouter>
-                <App />
+                <RecoilRoot>
+                    <App />
+                </RecoilRoot>
             </BrowserRouter>
         </ApolloProvider>
     </React.StrictMode>
