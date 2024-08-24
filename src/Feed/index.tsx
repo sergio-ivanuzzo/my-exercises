@@ -121,6 +121,16 @@ const postsReducer = (state: IPost[], action: Action): IPost[] => {
     }
 };
 
+interface IPostContentProps {
+    text: string;
+}
+
+const PostContent = React.memo(({ text }: IPostContentProps) => {
+    return (
+        <span>{text}</span>
+    );
+});
+
 const Feed = () => {
     const [posts, dispatch] = useReducer(postsReducer, []);
 
@@ -138,7 +148,7 @@ const Feed = () => {
             <div className={styles.postContainer}>
                 {posts.map(post => (
                     <Post key={post.id} id={post.id} comments={post.comments} addComment={addComment}>
-                        <span>{post.text}</span>
+                        <PostContent text={post.text} />
                     </Post>
                 ))}
             </div>
