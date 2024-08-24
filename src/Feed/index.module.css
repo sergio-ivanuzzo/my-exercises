@@ -1,0 +1,27 @@
+.feed {
+    padding: 25px;
+
+    .postContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .post {
+            border: 1px solid gray;
+            border-radius: 10px;
+            box-shadow: 0 0 3px 0 gray;
+            width: fit-content;
+            padding: 10px;
+        }
+
+        .comment {
+            margin-left: 25px;
+        }
+    }
+}
+
+.form {
+    background: aquamarine;
+    width: fit-content;
+    padding: 20px;
+}

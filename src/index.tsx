@@ -8,7 +8,7 @@ import "normalize.css";
 import "reset-css";
 import {RecoilRoot} from "recoil";
 
-const client = new ApolloClient({
+export const client = new ApolloClient({
     uri: `http://localhost:${process.env.REACT_APP_PORT}/graphql/`,
     cache: new InMemoryCache(),
 });

@@ -71,7 +71,7 @@ interface IUserTableProps {
     removeUser: (id: string) => void;
 }
 
-const UserTable = ({ users, editUser, removeUser }: IUserTableProps) => {
+export const UserTable = ({ users, editUser, removeUser }: IUserTableProps) => {
     const handleEdit = (user: IUser) => editUser({
         ...user,
         name: "UPDATED"
@@ -153,7 +153,7 @@ export const DELETE_USER_MUTATION = gql`
     }
 `;
 
-interface IQueryProps {
+export interface IQueryProps {
     data?: { users: IUser[] },
     loading: boolean,
     error?: ApolloError,

@@ -19,6 +19,9 @@ import CurrencyConverter from "../CurrencyConverter";
 import {NewsFetcherWithCategorySelector} from "../News";
 import ImageGallery from "../ImageGallery";
 import RecoilTask1 from "../Recoil";
+import {GraphQLContainer} from "../Recoil/GraphQLContainer";
+import KeysContainer from "../Keys";
+import Feed from "../Feed";
 
 interface IChapter {
     link: string,
@@ -64,6 +67,9 @@ const CHAPTERS: IChapter[] = [
     {link: "/currency", text: "CurrencyConverter", component: CurrencyConverter},
     {link: "/imagegallery", text: "ImageGallery", component: ImageGallery},
     {link: "/recoil1", text: "Recoil Task 1", component: RecoilTask1},
+    {link: "/recoil2", text: "Users graphql table + recoil", component: GraphQLContainer},
+    {link: "/keys", text: "Keys experiments", component: KeysContainer},
+    {link: "/feed", text: "Feed", component: Feed},
 ];
 
 const SearchBar = ({ query, setQuery }: ISearchBarProps) => {
