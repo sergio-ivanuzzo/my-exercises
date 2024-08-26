@@ -1,5 +1,6 @@
 import React, {useCallback, useMemo, useReducer, useState} from "react";
 import {v4} from "uuid";
+import { isEqual } from "lodash";
 import styles from "./index.module.css";
 
 interface IPost {
@@ -21,6 +22,7 @@ const CommentForm = React.memo(({ addComment }: ICommentFormProps) => {
 
     const handleAddComment = () => {
         addComment(inputValue);
+        setInputValue("");
     };
 
     return (
@@ -39,20 +41,20 @@ interface IPostProps {
 }
 
 const Post = React.memo(({ addComment, comments, children, id }: IPostProps) => {
+    const commentsElements = useMemo(() => comments.map(comment => (
+        <Comment key={comment.id}>
+            <span>{comment.text}</span>
+        </Comment>
+    )), [comments]);
+
     return (
         <div className={styles.post}>
             {children}
             <CommentForm addComment={(text) => addComment(text, id)} />
-            {comments.map(comment => (
-                <Comment key={comment.id}>
-                    <span>{comment.text}</span>
-                </Comment>
-            ))}
+            {commentsElements}
         </div>
     );
-}, (prevProps, nextProps) => {
-    return prevProps.addComment === nextProps.addComment && prevProps.comments === nextProps.comments;
-});
+}, (prevProps, nextProps) => isEqual(prevProps, nextProps));
 
 interface IComment {
     id: string;
@@ -70,7 +72,7 @@ const Comment = React.memo(({ children }: ICommentProps) => {
             {children}
         </div>
     );
-});
+}, (prevProps, nextProps) => isEqual(prevProps, nextProps));
 
 interface IPostFormProps {
     addPost: (text: string) => void,
@@ -121,16 +123,6 @@ const postsReducer = (state: IPost[], action: Action): IPost[] => {
     }
 };
 
-interface IPostContentProps {
-    text: string;
-}
-
-const PostContent = React.memo(({ text }: IPostContentProps) => {
-    return (
-        <span>{text}</span>
-    );
-});
-
 const Feed = () => {
     const [posts, dispatch] = useReducer(postsReducer, []);
 
@@ -142,15 +134,17 @@ const Feed = () => {
         dispatch({ type: "ADD_COMMENT", text, post_id });
     }, []);
 
+    const postsElements = useMemo(() => posts.map(post => (
+        <Post key={post.id} id={post.id} comments={post.comments} addComment={addComment}>
+            <span>{post.text}</span>
+        </Post>
+    )), [addComment, posts]);
+
     return (
         <div className={styles.feed}>
             <PostForm addPost={addPost} />
             <div className={styles.postContainer}>
-                {posts.map(post => (
-                    <Post key={post.id} id={post.id} comments={post.comments} addComment={addComment}>
-                        <PostContent text={post.text} />
-                    </Post>
-                ))}
+                {postsElements}
             </div>
         </div>
     );
