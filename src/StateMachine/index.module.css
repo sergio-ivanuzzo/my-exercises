@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: max-content;
+
+    > * {
+        width: 60px;
+        height: 60px;
+    }
+
+    .green {
+        background: green;
+    }
+
+    .yellow {
+        background: yellow;
+    }
+
+    .red {
+        background: red;
+    }
+}

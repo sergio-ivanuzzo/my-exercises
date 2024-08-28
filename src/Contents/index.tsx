@@ -4,7 +4,6 @@ import ReviewMe from "../Proj0";
 import ReviewMe2 from "../Proj1";
 import "./index.module.css";
 import {DebounceInput} from "react-debounce-input";
-// import NewsFetcher from "../News";
 import State from "../State";
 import Selecting from "../Selecting";
 import TableContainer from "../Sorting";
@@ -22,6 +21,7 @@ import RecoilTask1 from "../Recoil";
 import {GraphQLContainer} from "../Recoil/GraphQLContainer";
 import KeysContainer from "../Keys";
 import Feed from "../Feed";
+import StateMachineContainer from "../StateMachine";
 
 interface IChapter {
     link: string,
@@ -70,6 +70,7 @@ const CHAPTERS: IChapter[] = [
     {link: "/recoil2", text: "Users graphql table + recoil", component: GraphQLContainer},
     {link: "/keys", text: "Keys experiments", component: KeysContainer},
     {link: "/feed", text: "Feed", component: Feed},
+    {link: "/statemachine1", text: "State Machine with XState: light switcher", component: StateMachineContainer},
 ];
 
 const SearchBar = ({ query, setQuery }: ISearchBarProps) => {
